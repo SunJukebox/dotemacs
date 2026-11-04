@@ -181,7 +181,6 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (use-package org-roam
-  :ensure t
   :defer t
   :after cl-lib
   :bind (("C-c n l" . org-roam-buffer-toggle)

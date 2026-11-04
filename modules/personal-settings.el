@@ -107,8 +107,8 @@
   "Return a new file path of a given file path.
 If the new path's directories does not exist, create them."
   (let* ((backupRootDir (concat user-emacs-directory "emacs-backup/"))
-         (filePath (replace-regexp-in-string "[A-Za-z]:" "" fpath )) ; remove Windows driver letter in path
-         (backupFilePath (replace-regexp-in-string "//" "/" (concat backupRootDir filePath "~") )))
+         (filePath (replace-regexp-in-string "[A-Za-z]:" "" fpath)) ; remove Windows driver letter in path
+         (backupFilePath (replace-regexp-in-string "//" "/" (concat backupRootDir filePath "~"))))
     (make-directory (file-name-directory backupFilePath) (file-name-directory backupFilePath))
     backupFilePath))
 (setopt make-backup-file-name-function 'onghaik--backup-file-name)
@@ -203,8 +203,8 @@ If the new path's directories does not exist, create them."
   (isearch-allow-motion t)
   (isearch-allow-scroll t)               ; lets you scroll without breaking search
   (isearch-repeat-on-direction-change t) ; C-r immediately goes to previous match
-  (isearch-wrap-pause 'no-ding)          ; Automatically wrap search to top
-  )
+  (isearch-wrap-pause 'no-ding))          ; Automatically wrap search to top
+  
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;

@@ -45,9 +45,9 @@
   (aas-set-snippets 'text-mode
                     ;; expand unconditionally
                     "mk" (lambda () (interactive)
-                           (yas-expand-snippet "\\($1\\)$0"))
+                           (yas-expand-snippet "\\\\($1\\\\)$0"))
                     "dm" (lambda () (interactive)
-                           (yas-expand-snippet "\\[\n\t$1\n\\]$0"))
+                           (yas-expand-snippet "\\\\[\n\t$1\n\\\\]$0"))
                     ;; (yas-expand-snippet "\\begin{equation*}\n  $0\n\\end{equation*}"))
                     ;; alternative snippet:
                     ;; "alig" (lambda () (interactive)

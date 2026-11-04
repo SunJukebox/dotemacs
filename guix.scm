@@ -154,12 +154,12 @@
          ("plugins/" "plugins/"))
      #:phases
      #~(modify-phases %standard-phases
-					  (add-after 'install 'install-launcher
-								 (lambda* (#:key outputs #:allow-other-keys)
-								   (use-modules (guix build utils))
-								   (let ((dest (in-vicinity #$output "bin/my-emacs")))
-									 (mkdir-p (dirname dest))
-									 (copy-file #$my-emacs-script dest)))))))
+		      (add-after 'install 'install-launcher
+				 (lambda* (#:key outputs #:allow-other-keys)
+				   (use-modules (guix build utils))
+				   (let ((dest (in-vicinity #$output "bin/my-emacs")))
+				     (mkdir-p (dirname dest))
+				     (copy-file #$my-emacs-script dest)))))))
    ;; (make-desktop-entry-file
    ;;  (in-vicinity #$output
    ;; 			   "share/applications/emacs-guix-starter.desktop")
