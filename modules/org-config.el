@@ -235,16 +235,19 @@ If provided, the PROMPT string is used as a custom prompt in the minibuffer."
 (use-package org
   :hook (org-mode . turn-on-org-cdlatex)
   :config
-  ;; Prevent CDLatex quote hijacking inside Org if desired
-  (define-key org-cdlatex-mode-map "'" nil)
+  ;; customize cdlatex keybindings in org
+  (define-key org-cdlatex-mode-map (kbd "'") nil)
+  (define-key org-cdlatex-mode-map (kbd "'") nil)
+  (define-key org-cdlatex-mode-map (kbd "#") #'org-cdlatex-math-modify)
+  (define-key org-cdlatex-mode-map (kbd ";") #'cdlatex-math-symbol)
 
   (defun my/org-inside-latex-p ()
-   "Check whether point is inside an Org LaTeX fragment or environment."
-   (or (and (fboundp 'org-inside-LaTeX-fragment-p)
-            (org-inside-LaTeX-fragment-p))
-       (and (fboundp 'org-element-type)
-            (let ((elem (org-element-context)))
-              (memq (car elem) '(latex-fragment latex-environment))))))
+    "Check whether point is inside an Org LaTeX fragment or environment."
+    (or (and (fboundp 'org-inside-LaTeX-fragment-p)
+             (org-inside-LaTeX-fragment-p
+              (and (fboundp 'org-element-type)
+                   (let ((elem (org-element-context)))
+                     (memq (car elem) '(latex-fragment latex-environment))))))))
 
   ;; Handle TAB precedence specifically inside Org buffers
   (defun my/org-tab-conditional ()
@@ -266,6 +269,6 @@ If provided, the PROMPT string is used as a custom prompt in the minibuffer."
      (t nil)))
 
   (add-hook 'org-tab-first-hook #'my/org-tab-conditional))
-
+ 
 (provide 'org-config)
 ;;; org-config.el ends here
