@@ -25,7 +25,7 @@
 ;;; Code:
 
 (add-to-list 'package-selected-packages 'macrostep)
-(add-to-list 'package-selected-packages 'parinfer-rust-mode)
+(add-to-list 'package-selected-packages 'paredit)
 
 (provide 'lispy-packages)
 ;;; lispy-packages.el ends here

@@ -45,7 +45,8 @@
            emacs-guix
            emacs-macrostep
            emacs-macrostep-geiser
-           emacs-parinfer-rust-mode
+           ;; emacs-parinfer-rust-mode
+           emacs-paredit
 
            ;; Base
            emacs-avy

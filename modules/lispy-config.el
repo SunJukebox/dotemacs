@@ -32,27 +32,32 @@
   ((:map emacs-lisp-mode-map)
    ("C-c e" . macrostep-expand)))
 
-(use-package parinfer-rust-mode
+;; (use-package parinfer-rust-mode
+;;   :config
+;;   ;; Disable parenthesis pairing in `electric-pair-mode' when
+;;   ;; `parinfer-rust-mode' is active.
+;;   (setopt electric-pair-inhibit-predicate
+;;           (lambda (char)
+;;             (or (and (bound-and-true-p parinfer-rust-mode)
+;;                      (memql char '(?\( ?\[ ?\{)))
+;;                 (electric-pair-default-inhibit char))))
+;;   (setopt parinfer-rust-troublesome-modes
+;;           (delq 'electric-pair-mode parinfer-rust-troublesome-modes))
+;;   ;; These customizations are managed by Guix but will be overridden if using
+;;   ;; `no-littering'.  Reset them to standard values.
+;;   (custom-reevaluate-setting 'parinfer-rust-library-directory)
+;;   (custom-reevaluate-setting 'parinfer-rust-library)
+;;   :hook
+;;   ;; XXX: Enable mode first, workaround to support `menu-find-file-existing'.
+;;   ((emacs-lisp-mode lisp-mode scheme-mode) . parinfer-rust-mode-enable)
+;;   ((emacs-lisp-mode lisp-mode scheme-mode) . parinfer-rust-mode)
+;;   ;; Disable tabs to avoid breaking Parinfer's indentation-based logic
+;;   (parinfer-rust-mode . (lambda () (setq indent-tabs-mode nil))))
+
+(use-package paredit
+  :defer t
   :config
-  ;; Disable parenthesis pairing in `electric-pair-mode' when
-  ;; `parinfer-rust-mode' is active.
-  (setopt electric-pair-inhibit-predicate
-          (lambda (char)
-            (or (and (bound-and-true-p parinfer-rust-mode)
-                     (memql char '(?\( ?\[ ?\{)))
-                (electric-pair-default-inhibit char))))
-  (setopt parinfer-rust-troublesome-modes
-          (delq 'electric-pair-mode parinfer-rust-troublesome-modes))
-  ;; These customizations are managed by Guix but will be overridden if using
-  ;; `no-littering'.  Reset them to standard values.
-  (custom-reevaluate-setting 'parinfer-rust-library-directory)
-  (custom-reevaluate-setting 'parinfer-rust-library)
-  :hook
-  ;; XXX: Enable mode first, workaround to support `menu-find-file-existing'.
-  ((emacs-lisp-mode lisp-mode scheme-mode) . parinfer-rust-mode-enable)
-  ((emacs-lisp-mode lisp-mode scheme-mode) . parinfer-rust-mode)
-  ;; Disable tabs to avoid breaking Parinfer's indentation-based logic
-  (parinfer-rust-mode . (lambda () (setq indent-tabs-mode nil))))
+  (paredit-mode))
 
 
 (provide 'lispy-config)
