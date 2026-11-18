@@ -1,9 +1,9 @@
 ;;; markdown-config.el --- Provide and configure markdown-mode  -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2025  
+;; Copyright (C) 2025
 
 ;; Author:  <kyle@thinkpad490>
-;; Keywords: 
+;; Keywords
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by

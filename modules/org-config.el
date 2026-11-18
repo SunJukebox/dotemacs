@@ -172,7 +172,23 @@
            ((agenda)
             (todo)))
           ("w" "Work" agenda ""
-           ((org-agenda-files '("work.org")))))))
+           ((org-agenda-files '("work.org"))))))
+
+  (add-to-list 'org-preview-latex-process-alist
+               '(tectonic :programs ("tectonic" "convert") 
+                 :description "pdf > png"
+                 :message "you need install the programs: tectonic and imagemagick."
+                 :image-input-type "pdf" 
+                 :image-output-type "png"
+                 :image-size-adjust (1.0 . 1.0) 
+                 :latex-compiler
+                 ("tectonic -Z shell-escape-cwd=%o --outfmt pdf --outdir %o %f")
+                 :image-converter
+                 ("convert -density %D -trim -antialias %f -quality 300 %O")))
+  (setq org-preview-latex-default-process 'tectonic)
+  (add-to-list 'org-latex-packages-alist '(("" "mathtools" t ("pdflatex")))))
+
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;
@@ -253,22 +269,48 @@ If provided, the PROMPT string is used as a custom prompt in the minibuffer."
   (defun my/org-tab-conditional ()
     "Handle TAB precedence: Yasnippet active field -> CDLatex -> default Org cycle."
     (cond
-     ;; 1. Active snippet field: let yasnippet jump/expand
+     ;; active snippet field: let yasnippet jump/expand
      ((and (bound-and-true-p yas-minor-mode)
            (fboundp 'yas-active-snippets)
            (yas-active-snippets))
       (yas-next-field-or-maybe-expand)
       t)
-     ;; 2. Inside LaTeX fragment: let cdlatex handle it
+     ;; inside LaTeX fragment: let cdlatex handle it
      ((and (bound-and-true-p org-cdlatex-mode)
            (fboundp 'org-inside-LaTeX-fragment-p)
            (org-inside-LaTeX-fragment-p))
       (cdlatex-tab)
       t)
-     ;; 3. Fallback: let Org do its default tab action (cycle/table)
+     ;; fallback: let Org do its default tab action (cycle/table)
      (t nil)))
 
   (add-hook 'org-tab-first-hook #'my/org-tab-conditional))
+
+;; shortcut for inserting mathematical blocks
+(use-package org
+  :config
+  (defvar my/org-math-block-types
+   '("definition"
+     "theorem"
+     "lemma"
+     "proposition"
+     "corollary"
+     "proof"
+     "mathexample"
+     "remark"
+     "exercise")
+   "Types of mathematical blocks used in Org notes.")
+  (defun my/org-insert-math-block (type)
+   "Insert a mathematical block of TYPE."
+   (interactive
+    (list (completing-read "Block type: "
+                           my/org-math-block-types
+                           nil t)))
+   (let ((start (point)))
+     (insert (format "#+begin_%s\n\n#+end_%s"
+                     type type))
+     (goto-char start)
+     (forward-line 1))))
  
 (provide 'org-config)
 ;;; org-config.el ends here
