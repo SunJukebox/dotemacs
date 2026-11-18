@@ -63,6 +63,7 @@
     emacs-cape
     emacs-corfu
     emacs-consult
+    emacs-embark-consult
     emacs-kind-icon
     emacs-eat
     emacs-orderless

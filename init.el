@@ -65,6 +65,7 @@
   ;; (require 'flycheck-packages)
   ;; (require 'yasnippet-packages)
   ;; (require 'tex-packages)
+  (require 'toc-packages)
 
   ;; Install the packages listed in the `package-selected-packages'
   ;; list.
@@ -93,6 +94,7 @@
 ;; (require 'tex-config)
 ;; (require 'lsp-config)
 ;; (require 'treesit-config)
+(require 'toc-config)
 
 ;; Profile emacs startup
 (defun onghaik/display-startup-time ()

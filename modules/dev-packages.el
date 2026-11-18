@@ -51,6 +51,7 @@
 
 (require 'magit-packages)
 (require 'flycheck-packages)
+(require 'lispy-packages)
 (require 'guile-packages)
 ;; (require 'guix-packages)
 (require 'markdown-packages)

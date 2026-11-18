@@ -22,6 +22,8 @@
 
 ;;; Code:
 
+(require 'os-detection)
+
 (use-package flycheck-guile
   :after flycheck geiser-guile)
 
@@ -37,10 +39,12 @@
 (use-package geiser-guile
   :after geiser
   :config
-  (setopt geiser-guile-load-path
-          (let* ((cmd "echo '(write %load-path)' | guix repl -q --type=machine")
-                 (out (nth 1 (split-string (shell-command-to-string cmd) "\n"))))
-            (read out))))
+  (when (or (onghaik/is-guix-system)
+	    (executable-find "guix"))
+    (setopt geiser-guile-load-path
+            (let* ((cmd "echo '(write %load-path)' | guix repl -q --type=machine")
+                   (out (nth 1 (split-string (shell-command-to-string cmd) "\n"))))
+              (read out)))))
 
 (use-package macrostep-geiser
   :after geiser
@@ -54,4 +58,3 @@
 
 (provide 'guile-config)
 ;;; guile-config.el ends here
-t

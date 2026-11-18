@@ -58,12 +58,12 @@
                             (foreground-color . "#ffffff")))
 
 (load (expand-file-name "modules/os-detection"
-						user-emacs-directory))
+			user-emacs-directory))
 
 (unless (or (onghaik/is-guix-system)
-			(executable-find "guix"))
+	    (executable-find "guix"))
   (load (expand-file-name "modules/package-config"
-						user-emacs-directory)))
+			  user-emacs-directory)))
 
 
 (provide 'early-init)

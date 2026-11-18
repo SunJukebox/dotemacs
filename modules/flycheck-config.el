@@ -8,7 +8,6 @@
 (use-package flycheck
   :init (global-flycheck-mode)
   :config
-  (setopt flycheck-emacs-lisp-load-path 'inherit)
-  )
+  (setopt flycheck-emacs-lisp-load-path 'inherit))
 
 (provide 'flycheck-config)

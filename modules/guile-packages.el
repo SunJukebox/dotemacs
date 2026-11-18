@@ -24,7 +24,7 @@
 
 ;;; Code:
 
-(add-to-list 'package-selected-packages 'flycheck-geiser)
+(add-to-list 'package-selected-packages 'flycheck-guile)
 (add-to-list 'package-selected-packages 'geiser)
 (add-to-list 'package-selected-packages 'geiser-guile)
 (add-to-list 'package-selected-packages 'macrostep-geiser)

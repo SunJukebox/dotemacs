@@ -63,7 +63,6 @@
 (require 'flycheck-config)
 (require 'lispy-config)
 (require 'guile-config)
-(require 'guile-config)
 (when (equal system-type `gnu/linux)
   (require 'guix-config))
 (require 'markdown-config)
